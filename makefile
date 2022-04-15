@@ -30,6 +30,7 @@ objects = obj/loader.o \
           obj/net/icmp.o \
           obj/net/udp.o \
           obj/net/tcp.o \
+          obj/multithreading.o \
           obj/kernel.o
 
 

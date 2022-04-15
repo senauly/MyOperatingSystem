@@ -8,7 +8,7 @@
 namespace myos
 {
     
-    struct CPUState
+    struct CPUStateTask
     {
         common::uint32_t eax;
         common::uint32_t ebx;
@@ -40,7 +40,7 @@ namespace myos
     friend class TaskManager;
     private:
         common::uint8_t stack[4096]; // 4 KiB
-        CPUState* cpustate;
+        CPUStateTask* cpustate;
     public:
         Task(GlobalDescriptorTable *gdt, void entrypoint());
         ~Task();
@@ -57,7 +57,7 @@ namespace myos
         TaskManager();
         ~TaskManager();
         bool AddTask(Task* task);
-        CPUState* Schedule(CPUState* cpustate);
+        CPUStateTask* Schedule(CPUStateTask* cpustate);
     };
     
     

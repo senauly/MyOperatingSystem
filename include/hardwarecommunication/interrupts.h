@@ -6,6 +6,7 @@
 #include <multitasking.h>
 #include <common/types.h>
 #include <hardwarecommunication/port.h>
+#include <multithreading.h>
 
 
 namespace myos
@@ -34,7 +35,7 @@ namespace myos
 
                 static InterruptManager* ActiveInterruptManager;
                 InterruptHandler* handlers[256];
-                TaskManager *taskManager;
+                ThreadManager *threadManager;
 
                 struct GateDescriptor
                 {
@@ -111,7 +112,7 @@ namespace myos
                 Port8BitSlow programmableInterruptControllerSlaveDataPort;
 
             public:
-                InterruptManager(myos::common::uint16_t hardwareInterruptOffset, myos::GlobalDescriptorTable* globalDescriptorTable, myos::TaskManager* taskManager);
+                InterruptManager(myos::common::uint16_t hardwareInterruptOffset, myos::GlobalDescriptorTable* globalDescriptorTable, myos::ThreadManager* threadManager);
                 ~InterruptManager();
                 myos::common::uint16_t HardwareInterruptOffset();
                 void Activate();

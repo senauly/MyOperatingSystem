@@ -7,7 +7,7 @@ using namespace myos::common;
 
 Task::Task(GlobalDescriptorTable *gdt, void entrypoint())
 {
-    cpustate = (CPUState*)(stack + 4096 - sizeof(CPUState));
+    cpustate = (CPUStateTask*)(stack + 4096 - sizeof(CPUStateTask));
     
     cpustate -> eax = 0;
     cpustate -> ebx = 0;
@@ -58,7 +58,7 @@ bool TaskManager::AddTask(Task* task)
     return true;
 }
 
-CPUState* TaskManager::Schedule(CPUState* cpustate)
+CPUStateTask* TaskManager::Schedule(CPUStateTask* cpustate)
 {
     if(numTasks <= 0)
         return cpustate;
